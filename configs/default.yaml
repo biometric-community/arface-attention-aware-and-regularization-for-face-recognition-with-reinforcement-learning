@@ -1,0 +1,36 @@
+paper:
+  slug: arface-attention-aware-and-regularization-for-face-recognition-with-reinforcement-learning
+  title: "ARFace: Attention-Aware and Regularization for Face Recognition With Reinforcement Learning"
+data:
+  celeba_root: ../../datasets/celeba/extracted/celeba
+  lfw_root: ../../datasets/lfw
+  calfw_root: ../../datasets/calfw/extracted/calfw-hf
+  cplfw_root: ../../datasets/cplfw/extracted/cplfw-hf
+  root: ../../datasets/celeba/extracted/celeba
+  train_ratio: 0.7
+  max_images: null
+model:
+  image_size: 112
+  attn_grid: 7
+  pretrained: true
+train:
+  protocol: full
+  seed: 42
+  num_workers: 4
+  batch_size: 64
+  epochs: 8
+  warmup_epochs: 2
+  lr: 0.05
+  attn_lr: 0.001
+  sparsity_weight: 0.1
+  sparsity_target: 0.6
+  soft_mask_for_feature: true
+eval:
+  batch_size: 128
+  max_lfw_pairs: null
+paths:
+  checkpoint_dir: outputs/checkpoints/full
+  log_dir: outputs/logs/full
+  pred_dir: outputs/predictions/full
+  figure_dir: outputs/figures/full
+device: cuda
