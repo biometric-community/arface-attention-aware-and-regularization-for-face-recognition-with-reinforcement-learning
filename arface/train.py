@@ -101,7 +101,7 @@ def train(cfg: dict, device_override: Optional[str] = None) -> Dict:
             hard, log_prob, soft, probs = attn.sample_mask(images, image_size)
             # Feature-Net: soft mask detached so CE does not backprop into Attention-Net
             mask_f = soft.detach() if use_soft else hard.detach()
-            logits, _ = feat(images * mask_f)
+            logits, _ = feat(images * mask_f, mask=mask_f)
             loss_ce = F.cross_entropy(logits, labels)
             opt_f.zero_grad(set_to_none=True)
             loss_ce.backward()
@@ -109,7 +109,7 @@ def train(cfg: dict, device_override: Optional[str] = None) -> Dict:
 
             # Attention-Net: REINFORCE with hard-mask accuracy reward (Feature frozen in graph)
             with torch.no_grad():
-                logits_r, _ = feat(images * hard)
+                logits_r, _ = feat(images * hard, mask=hard)
                 reward = (logits_r.argmax(dim=1) == labels).float()
                 rewards.append(float(reward.mean()))
             reward_ema = 0.9 * reward_ema + 0.1 * float(reward.mean())

@@ -7,3 +7,4 @@
 | D3 | Backbone | Deeper FR nets | ResNet-18 | Lab twin compute |
 | D4 | Benchmarks | IJB / MegaFace / YTF | LFW/CALFW/CPLFW | Available locally |
 | D5 | RL details | Paper-specific reward schedule | REINFORCE + EMA baseline | Faithful spirit, simplified |
+| D6 | Regulariser | Input-layer mask applied to intermediate feature maps | Same, after each ResNet stage, alongside a sparsity term on the mean attention | Stages to mask are not specified in the abstract |
