@@ -1,0 +1,10 @@
+# Zhang, Sun, Yu, Dong, Chen, Cai, Wang & Ning, "ARFace: Attention-Aware and Regularization
+# for Face Recognition With Reinforcement Learning", IEEE TBIOM 4(1), 2022,
+# doi:10.1109/TBIOM.2021.3104014. Closed access: the checks follow the abstract (an
+# Attention-Net trained with reinforcement learning to maximise recognition accuracy, a
+# Feature-Net for embeddings, and a regulariser that applies the input-layer mask to
+# intermediate feature maps). No published values are recorded.
+source: doi:10.1109/TBIOM.2021.3104014
+
+# A working recogniser; LFW accuracy of 90% is a loose floor.
+clean_lfw_accuracy_floor: 90.0
